@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,11 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText inputName,inputPhone,inputPassword;
@@ -65,17 +70,41 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void ValidatePhoneNumber(String name, final String phone, String password) {
+    private void ValidatePhoneNumber(final String name, final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!(dataSnapshot.child("Users").child(phone).exists())){
-                    
+                    HashMap<String,Object> userDataMap = new HashMap<>();
+                    userDataMap.put("phone",phone);
+                    userDataMap.put("name",name);
+                    userDataMap.put("password",password);
+                    RootRef.child("Users").child(phone).updateChildren(userDataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity.this, "Inscription reussi", Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+                                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        loadingBar.dismiss();
+                                        Toast.makeText(RegisterActivity.this, "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
                 else {
                     Toast.makeText(RegisterActivity.this, "Ce numéro de telephone exite déja", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Veillez tanter avec un autre numéro", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                    startActivity(intent);
                 }
             }
 
