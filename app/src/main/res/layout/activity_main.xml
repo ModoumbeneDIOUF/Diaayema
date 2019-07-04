@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shoponline"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/app_log"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/shoponline"
+        />
+
+    <TextView
+        android:id="@+id/app_slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="Avec Diaayema acheter devient rapide"
+        android:textAlignment="center"
+        android:textColor="#ea0000"
+        android:textSize="20dp"
+        android:textStyle="bold|italic" />
+
+
+    <Button
+        android:id="@+id/main_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_log"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="340dp"
+        android:width="130dp"
+        android:background="@drawable/buttons"
+        android:text="Se  connecter"
+        android:textColor="@android:color/white"
+         />
+
+        <Button
+            android:id="@+id/main_register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="130dp"
+            android:background="@drawable/buttons"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="S'inscrire"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/main_login_btn"
+            android:layout_marginTop="15dp"
+             />
+
+
+</RelativeLayout>

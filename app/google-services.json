@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "769400780599",
+    "firebase_url": "https://diaayema.firebaseio.com",
+    "project_id": "diaayema",
+    "storage_bucket": "diaayema.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769400780599:android:1d86d2de4ed1a5f1",
+        "android_client_info": {
+          "package_name": "com.example.bichri.diaayema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769400780599-j2uchn83a9v3pcds7efqk5s8ddta9r7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bichri.diaayema",
+            "certificate_hash": "53c465e31088df6e328b9b7ce8fe8d6296995e8b"
+          }
+        },
+        {
+          "client_id": "769400780599-hhffg88mbemkhc8tr4u9a2gdqu7uadcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkQx1PqAJRehkBFXvM4pSukUnx4hri6LE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769400780599-hhffg88mbemkhc8tr4u9a2gdqu7uadcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
