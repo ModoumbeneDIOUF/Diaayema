@@ -33,13 +33,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         inputName = findViewById(R.id.register_name_input);
-        inputPhone = findViewById(R.id.register_name_input);
+        inputPhone = findViewById(R.id.register_phone_number_input);
+        inputPassword = findViewById(R.id.register_phone_password_input);
         createAccountButton = findViewById(R.id.register_btn);
         loadingBar = new ProgressDialog(this);
 
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(RegisterActivity.this, "bien", Toast.LENGTH_SHORT).show();
                 CreateAccount();
             }
         });
@@ -88,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this, "Inscription reussi", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
+
                                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                                         startActivity(intent);
                                     }

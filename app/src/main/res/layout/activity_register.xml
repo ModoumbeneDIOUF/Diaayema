@@ -64,17 +64,6 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         >
-        <com.rey.material.widget.CheckBox
-            android:id="@+id/remember_me_chkb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Material.Drawable.CheckBox"
-            android:text="Se souvenir de moi"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_gravity="center_vertical"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="17dp"/>
 
     </LinearLayout>
     <Button
