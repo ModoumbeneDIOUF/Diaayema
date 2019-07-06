@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bichri.diaayema.Model.Users;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private ProgressDialog loadingBar;
     private CheckBox chBoxRemember;
+    private TextView AdminLink,NoAdminLink;
+    private String parendDbName="Users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_btn);
         loadingBar = new ProgressDialog(this);
         chBoxRemember = (CheckBox) findViewById(R.id.remember_me_chkb);
+        AdminLink = findViewById(R.id.admin_panel);
+        NoAdminLink = findViewById(R.id.not_admin_panel);
         Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +53,26 @@ public class LoginActivity extends AppCompatActivity {
 
                 loginUser();
 
+            }
+        });
+
+        AdminLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginButton.setText("Login Admin");
+                AdminLink.setVisibility(View.INVISIBLE);
+                NoAdminLink.setVisibility(View.VISIBLE);
+                parendDbName = "Admins";
+            }
+        });
+
+        NoAdminLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginButton.setText("Se connecter");
+                AdminLink.setVisibility(View.VISIBLE);
+                NoAdminLink.setVisibility(View.INVISIBLE);
+                parendDbName = "Users";
             }
         });
     }
@@ -86,16 +111,26 @@ public class LoginActivity extends AppCompatActivity {
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("Users").child(phone).exists()){
-                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                if (dataSnapshot.child(parendDbName).child(phone).exists()){
+                    Users usersData = dataSnapshot.child(parendDbName).child(phone).getValue(Users.class);
                     if(usersData.getPhone().equals(phone))
                     {
                         if(usersData.getPassword().equals(password))
                         {
-                            Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                            startActivity(intent);
+                            if (parendDbName.equals("Admins"))
+                            {
+                                Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(LoginActivity.this,AdminAddNewwProdctActivity.class);
+                                startActivity(intent);
+                            }
+                            else if(parendDbName.equals("Users"))
+                            {
+                                Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                                startActivity(intent);
+                            }
                         }
                         else
                         {

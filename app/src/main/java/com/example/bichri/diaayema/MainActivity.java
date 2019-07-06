@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Ce compte n'existe pas veillez enter le bon numero", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }
