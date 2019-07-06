@@ -3,6 +3,7 @@ package com.example.bichri.diaayema;
 import androidx.annotation.NonNull;
 import  androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import io.paperdb.Paper;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,17 +15,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bichri.diaayema.Model.Users;
+import com.example.bichri.diaayema.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputNumber,inputPassword;
     private Button loginButton;
     private ProgressDialog loadingBar;
+    private CheckBox chBoxRemember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = findViewById(R.id.login_phone_password_input);
         loginButton = findViewById(R.id.login_btn);
         loadingBar = new ProgressDialog(this);
+        chBoxRemember = (CheckBox) findViewById(R.id.remember_me_chkb);
+        Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void AllowAccesToCount(final String phone, final String password) {
+        if (chBoxRemember.isChecked()){
+                Paper.book().write(Prevalent.UserPhoneKey,phone);
+                Paper.book().write(Prevalent.UserPasswordKey,password);
+
+        }
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -88,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            loadingBar.dismiss();
                             Toast.makeText(LoginActivity.this, "Le mot de passe est incorrecte", Toast.LENGTH_SHORT).show();
 
                         }

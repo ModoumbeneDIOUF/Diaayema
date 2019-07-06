@@ -1,6 +1,7 @@
 package com.example.bichri.diaayema;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.paperdb.Paper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Paper.book().destroy();
                 Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
