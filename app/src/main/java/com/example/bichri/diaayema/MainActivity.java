@@ -60,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey))
             {
                 AllowsAccess(UserPhoneKey,UserPasswordKey);
-                loadingBar.setTitle("Connection en cour");
-                loadingBar.setMessage("Veillez patienter un instant ...");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
+
             }
         }
     }
