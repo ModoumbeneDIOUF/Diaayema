@@ -59,22 +59,12 @@ public class LoginActivity extends AppCompatActivity {
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginButton.setText("Login Admin");
-                AdminLink.setVisibility(View.INVISIBLE);
-                NoAdminLink.setVisibility(View.VISIBLE);
-                parendDbName = "Admins";
+                Intent intent = new Intent(LoginActivity.this,LoginAdminActivity.class);
+                startActivity(intent);
+
             }
         });
 
-        NoAdminLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setText("Se connecter");
-                AdminLink.setVisibility(View.VISIBLE);
-                NoAdminLink.setVisibility(View.INVISIBLE);
-                parendDbName = "Users";
-            }
-        });
     }
 
     private void loginUser() {
@@ -117,13 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         if(usersData.getPassword().equals(password))
                         {
-                            if (parendDbName.equals("Admins")){
-                                loadingBar.dismiss();
-                                Intent intent = new Intent(LoginActivity.this,AdminAddNewwProdctActivity.class);
-                                startActivity(intent);
 
-                            }
-                            else if (parendDbName.equals("Users"))
+                             if (parendDbName.equals("Users"))
                             {
                                 loadingBar.dismiss();
                                 Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
