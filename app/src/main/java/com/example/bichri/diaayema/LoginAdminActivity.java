@@ -30,7 +30,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                pass = Apassword.getText().toString();
                if (phone.equals("773283705")){
                    if (pass.equals("bichri")){
-                       Intent intent = new Intent(LoginAdminActivity.this,AdminAddNewwProdctActivity.class);
+                       Intent intent = new Intent(LoginAdminActivity.this,AdminCategoryActivity.class);
                        startActivity(intent);
                    }
                    else{
