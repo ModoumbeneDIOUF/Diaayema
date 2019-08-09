@@ -113,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                                 loadingBar.dismiss();
                                 Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+
+                                Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }
                         }

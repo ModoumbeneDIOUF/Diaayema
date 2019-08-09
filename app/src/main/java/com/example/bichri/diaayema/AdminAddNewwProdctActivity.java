@@ -152,6 +152,7 @@ public class AdminAddNewwProdctActivity extends AppCompatActivity {
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                        if (!task.isSuccessful()){
                            throw task.getException();
+
                        }
                        dowloadImageUrl = filePath.getDownloadUrl().toString();
                        return filePath.getDownloadUrl();
